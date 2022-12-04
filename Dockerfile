@@ -11,6 +11,9 @@ RUN apk add --no-cache libstdc++ curl openssl zlib libintl \
     && ./configure \
     && make prefix=/usr/local all -j8 \
     && make prefix=/usr/local INSTALL_STRIP=-s install \
+    && cd contrib/subtree \
+    && make prefix=/usr/local all -j8 \
+    && make prefix=/usr/local INSTALL_STRIP=-s install \
     && cd ~ \
     && apk del .build-deps-full \
     && rm -rf /tmp/git*
